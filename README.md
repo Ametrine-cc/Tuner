@@ -45,14 +45,6 @@ Find more about configuration and dependencies in the [Configuration](Configurat
 
 ## Installation
 
-### Using a package manager
-
-```bash
-# Arch Linux: 
-yay -S tuner
-# Other distributions coming soon
-```
-
 ### Building from source
 
 ```bash
@@ -61,6 +53,12 @@ cd tuner
 
 chmod +x install.sh
 ./install.sh
+```
+
+### Uninstallation
+
+```bash
+tuner --uninstall
 ```
 
 ### Running
