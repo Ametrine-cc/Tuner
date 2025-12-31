@@ -38,86 +38,33 @@ sudo dnf install playerctl
 
 ---
 
-### Rust
-
-* Rust **1.70+** recommended
-* Cargo
-
-Install Rust:
-[https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install)
-
----
-
-## Dependencies
-
-Key crates used:
-
-* `raylib` – windowing, rendering, input
-* `tokio` – async runtime
-* `reqwest` – HTTP requests (album art)
-* `serde` + `toml` – configuration loading
-* `uuid` – temporary file naming
-
----
-
-## Project Structure
-
-```text
-.
-├── src/
-│   └── main.rs
-├── config.toml
-├── Cargo.toml
-└── README.md
-```
-
----
-
 ## Configuration
 
-The application loads an optional `config.toml` from the working directory.
-
-### Example `config.toml`
-
-```toml
-dark_mode = true
-window_width = 600
-window_height = 200
-update_interval = 2.0
-```
-
-### Options
-
-| Key               | Type  | Description                      |
-| ----------------- | ----- | -------------------------------- |
-| `dark_mode`       | bool  | Start in dark mode               |
-| `window_width`    | int   | Window width in pixels           |
-| `window_height`   | int   | Window height in pixels          |
-| `update_interval` | float | Seconds between metadata refresh |
-
-If the file is missing or invalid, defaults are used.
+Find more about configuration and dependencies in the [Configuration](Configuration.md) section.
 
 ---
 
-## Building
+## Installation
+
+### Using a package manager
+
+```bash
+# Arch Linux: 
+yay -S tuner
+# Other distributions coming soon
+```
+
+### Building from source
 
 ```bash
 git clone https://github.com/Ametrine-cc/Tuner.git
 cd tuner
 
-chmod +x build.sh
-./build.sh
+chmod +x install.sh
+./install.sh
 ```
 
-The binary will be located at:
-
-```text
-target/release/tuner
-```
-
----
-
-## Running
+### Running
 
 ```bash
 tuner
@@ -129,10 +76,9 @@ or
 ./target/release/tuner
 ```
 
-Make sure Spotify is running and playing music.
+Make sure Spotify is running in the background or nothing will show on the window when it's opened.
 
 ---
-
 
 ## Acknowledgements
 
