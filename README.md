@@ -29,11 +29,8 @@ The application polls Spotify metadata via `playerctl` and renders a minimal, mo
 Install `playerctl`:
 
 ```bash
-sudo apt install playerctl
-# or
+# Arch Linux:
 sudo pacman -S playerctl
-# or
-sudo dnf install playerctl
 ```
 
 ---
