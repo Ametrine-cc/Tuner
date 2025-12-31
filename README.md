@@ -177,12 +177,3 @@ MIT License
 * playerctl developers
 
 ---
-
-If you want, I can also:
-
-* Add badges (build, license)
-* Write a shorter README for releases
-* Generate a `LICENSE` file
-* Add contribution guidelines
-
-Just tell me.
