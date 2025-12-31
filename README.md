@@ -26,6 +26,8 @@ The application polls Spotify metadata via `playerctl` and renders a minimal, mo
 * **Spotify desktop client**
 * **playerctl**
 
+More information about dependencies can be found in the [Configuration](Configuration.md) section.
+
 Install `playerctl`:
 
 ```bash

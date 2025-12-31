@@ -52,7 +52,7 @@ struct AppState {
 }
 
 fn load_config() -> Config {
-    match std::fs::read_to_string("config.toml") {
+    match std::fs::read_to_string("~/.config/tuner/config.toml") {
         Ok(contents) => toml::from_str(&contents).unwrap_or_else(|e| {
             eprintln!("Failed to parse config.toml: {}", e);
             Config::default()
@@ -172,8 +172,8 @@ fn main() {
     rl.set_target_fps(60);
 
     // Load icon if it exists
-    if std::path::Path::new("icon.png").exists() {
-        let icon = Image::load_image("icon.png").expect("Failed to load icon");
+    if std::path::Path::new("~/.config/tuner/icon.png").exists() {
+        let icon = Image::load_image("~/.config/tuner/icon.png").expect("Failed to load icon");
         rl.set_window_icon(icon);
     }
 
