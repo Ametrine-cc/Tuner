@@ -1,8 +1,9 @@
 use raylib::prelude::*;
 use serde::Deserialize;
+use std::env;
 use std::process::Command;
 use std::sync::{Arc, Mutex};
-use tokio::fs;
+use tokio::{fs, process};
 
 #[derive(Deserialize, Clone)]
 struct Config {
@@ -162,6 +163,15 @@ fn get_theme_colors(is_dark: bool) -> ThemeColors {
 }
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
+
+    if args.get(1).map(|s| s == "--uninstall").unwrap_or(false) {
+        process::Command::new("./uninstall.sh")
+            .spawn()
+            .expect("Failed to run uninstall.sh");
+        return;
+    }
+
     let config = load_config();
 
     let (mut rl, thread) = raylib::init()
