@@ -133,10 +133,12 @@ Make sure Spotify is running and playing music.
 
 ---
 
-## Controls
 
-* **Left-click theme button (bottom-right)** – Toggle dark/light mode
-* Window closes normally via the window manager
+## Acknowledgements
+
+* [raylib](https://www.raylib.com/)
+* Spotify
+* playerctl developers
 
 ---
 
@@ -166,14 +168,5 @@ Planned or possible enhancements:
 
 ## License
 
-MIT License
-
----
-
-## Acknowledgements
-
-* [raylib](https://www.raylib.com/)
-* Spotify
-* playerctl developers
-
+MIT [License](LICENSE.md)
 ---
