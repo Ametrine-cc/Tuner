@@ -166,7 +166,10 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     if args.get(1).map(|s| s == "--uninstall").unwrap_or(false) {
-        process::Command::new("~/.config/tuner/uninstall.sh")
+        let home_dir = env::var("HOME")
+            .expect("Failed to get HOME environment variable. Please ensure it is set.");
+        let uninstall_script_path = format!("{}/.config/tuner/uninstall.sh", home_dir);
+        process::Command::new(&uninstall_script_path)
             .spawn()
             .expect("Failed to run uninstall.sh");
         return;
