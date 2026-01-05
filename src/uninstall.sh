@@ -14,7 +14,7 @@ rm -f ~/.config/tuner/log.txt
 rm -rf ~/.config/tuner
 
 # Remove the uninstall script
-sudo rm -f ~/usr/local/bin/uninstall.sh
+sudo rm -f ~/.config/tuner/uninstall.sh
 
 # Remove the directory
 
