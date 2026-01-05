@@ -18,8 +18,7 @@ echo "Installing tuner..."
 sudo mv target/release/tuner /usr/local/bin/tuner
 
 echo "Installing uninstall script..."
-cp src/uninstall.sh ~/.config/tuner/uninstall.sh
-sudo chmod +x ~/.config/tuner/uninstall.sh
+install -m 755 src/uninstall.sh ~/.config/tuner/uninstall.sh
 
 echo "Cleaning up..."
 rm -rf ~/.cargo ~/.rustup
