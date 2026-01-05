@@ -166,7 +166,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     if args.get(1).map(|s| s == "--uninstall").unwrap_or(false) {
-        process::Command::new("./uninstall.sh")
+        process::Command::new("~/.config/tuner/uninstall.sh")
             .spawn()
             .expect("Failed to run uninstall.sh");
         return;
