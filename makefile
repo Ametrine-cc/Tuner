@@ -10,11 +10,16 @@ VENDOR_DIR    := vendor
 RAYLIB_DIR    := $(VENDOR_DIR)/raylib/src
 RAYLIB_LIB    := $(RAYLIB_DIR)/libraylib.a
 KAMAKAZI_PATH := $(VENDOR_DIR)/kamakazi
-KAMAKAZI_LIB  := $(KAMAKAZI_PATH)/lib/libKamakaziLib.a
+KAMAKAZI_LIB  := $(KAMAKAZI_PATH)/libKamakaziLib.a
 
 # --- Includes and Libs ---
-INCLUDE := -I$(RAYLIB_DIR) -I$(KAMAKAZI_PATH)/include
-LIBS    := -L$(RAYLIB_DIR) -lraylib -L$(KAMAKAZI_PATH)/lib -lKamakaziLib
+INCLUDE  := -I$(RAYLIB_DIR) -I$(KAMAKAZI_PATH)/src/KamakaziLib \
+            $(shell pkg-config --cflags dbus-1)
+
+LIBS     := -L$(RAYLIB_DIR) -lraylib \
+            -L$(KAMAKAZI_PATH) -lKamakaziLib \
+            -lpulse \
+            $(shell pkg-config --libs dbus-1)
 
 # System dependencies for Raylib (Linux)
 SYS_LIBS := -lGL -lm -lpthread -ldl -lrt -lX11
@@ -26,6 +31,7 @@ TARGET  := tuner
 LICENSE := LICENSE
 DESKTOP := Tuner.desktop
 ICON    := icon.png
+FONTS   := resources/Roboto-Black.ttf resources/Roboto-Italic.ttf
 
 # --- Install Paths ---
 PREFIX     := /usr/local
@@ -34,11 +40,18 @@ DESKTOPDIR := /usr/share/applications
 TUNERDIR   := /usr/share/Tuner
 ICONDIR    := /usr/share/Tuner
 DOCDIR     := /usr/share/Tuner
+FONTDIR    := /usr/share/Tuner/resources
 
 # --- Targets ---
-.PHONY: all install uninstall clean update
+.PHONY: all install uninstall clean update check-deps
 
-all: $(TARGET)
+all: check-deps $(TARGET)
+
+# 0. Check system dependencies
+check-deps:
+	@pkg-config --exists libpulse  || (echo "ERROR: libpulse not found. Install pulseaudio or pipewire-pulse." && exit 1)
+	@pkg-config --exists dbus-1    || (echo "ERROR: dbus-1 not found. Install libdbus." && exit 1)
+	@echo "Dependencies OK."
 
 # 1. Fetch and build Raylib
 $(RAYLIB_LIB):
@@ -50,11 +63,11 @@ $(RAYLIB_LIB):
 	@echo "Building Raylib..."
 	$(MAKE) -C $(RAYLIB_DIR) PLATFORM=PLATFORM_DESKTOP
 
-# 2. Fetch and build KamakaziLib from 'Updates' branch
+# 2. Fetch and build KamakaziLib
 $(KAMAKAZI_LIB):
 	@mkdir -p $(VENDOR_DIR)
 	@if [ ! -d "$(KAMAKAZI_PATH)" ]; then \
-		echo "Cloning Kamakazi($(KAMAKAZI_BRANCH))..."; \
+		echo "Cloning Kamakazi ($(KAMAKAZI_BRANCH))..."; \
 		git clone -b $(KAMAKAZI_BRANCH) https://github.com/Ametrine-cc/Kamakazi.git $(KAMAKAZI_PATH); \
 	fi
 	@echo "Building Kamakazi..."
@@ -66,7 +79,6 @@ $(TARGET): $(APP_SRC) $(RAYLIB_LIB) $(KAMAKAZI_LIB)
 
 # --- Utility Targets ---
 
-# Force an update of the vendored libraries
 update:
 	@echo "Pulling latest changes for dependencies..."
 	cd $(VENDOR_DIR)/raylib && git pull origin $(RAYLIB_BRANCH)
@@ -77,19 +89,36 @@ update:
 	@echo "Dependencies updated and rebuilt."
 
 install: all
-	install -Dm644 $(LICENSE)               $(DESTDIR)$(DOCDIR)/LICENSE
-	install -Dm755 $(TARGET)                $(DESTDIR)$(BINDIR)/$(TARGET)
-	install -Dm644 $(ICON)                  $(DESTDIR)$(ICONDIR)/icon.png
-	install -Dm644 $(DESKTOP)               $(DESTDIR)$(DESKTOPDIR)/$(DESKTOP)
+	# Create directories
+	install -d $(DESTDIR)$(DOCDIR)
+	install -d $(DESTDIR)$(BINDIR)
+	install -d $(DESTDIR)$(ICONDIR)
+	install -d $(DESTDIR)$(DESKTOPDIR)
+	install -d $(DESTDIR)$(FONTDIR)
+
+	# Install files
+	install -m644 $(LICENSE) $(DESTDIR)$(DOCDIR)/LICENSE
+	install -m755 $(TARGET)  $(DESTDIR)$(BINDIR)/$(TARGET)
+	install -m644 $(ICON)    $(DESTDIR)$(ICONDIR)/icon.png
+	install -m644 $(DESKTOP) $(DESTDIR)$(DESKTOPDIR)/$(DESKTOP)
+
+	# Install fonts
+	for font in $(FONTS); do \
+		install -m644 $$font $(DESTDIR)$(FONTDIR)/; \
+	done
 
 uninstall:
-	rm -f $(DESTDIR)$(DOCDIR)/LICENSE
-	rm -f $(DESTDIR)$(BINDIR)/$(TARGET)
-	rm -f $(DESTDIR)$(DESKTOPDIR)/$(DESKTOP)
-	rm -f $(DESTDIR)$(ICONDIR)/$(ICON)
-	rm -rf $(DESTDIR)$(TUNERDIR)
+	rm -f  $(DESTDIR)$(DOCDIR)/LICENSE
+	rm -f  $(DESTDIR)$(BINDIR)/$(TARGET)
+	rm -f  $(DESTDIR)$(DESKTOPDIR)/$(DESKTOP)
+	rm -f  $(DESTDIR)$(ICONDIR)/icon.png
+	# Remove all fonts in the resource directory
+	rm -f  $(DESTDIR)$(FONTDIR)/*.ttf
+	# Clean up empty directories
+	rmdir  $(DESTDIR)$(FONTDIR) 2>/dev/null || true
+	rmdir  $(DESTDIR)$(TUNERDIR) 2>/dev/null || true
 
 clean:
 	rm -f $(TARGET)
+	rm -rf $(KAMAKAZI_PATH)
 	@if [ -d "$(RAYLIB_DIR)" ]; then $(MAKE) -C $(RAYLIB_DIR) clean; fi
-	@if [ -d "$(KAMAKAZI_PATH)" ]; then $(MAKE) -C $(KAMAKAZI_PATH) clean; fi

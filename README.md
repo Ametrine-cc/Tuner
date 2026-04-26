@@ -1,19 +1,14 @@
 # Tuner
 
-**Tuner** is a lightweight desktop widget built in **C++** using **SDL** that displays the currently playing songs on Linux. It shows album art, song title, artist, an animated equalizer, and supports dark/light themes.
+**Tuner** is a lightweight desktop widget built in **C++** using **Raylib** that displays the currently playing songs on Linux. It shows album art, song title, artist, an animated equalizer, and supports dark/light themes.
 
 ---
 
 ## Features
 
-* 🎵 Displays current Spotify song and artist
+* 🎵 Displays current song and artist
 * 🖼️ Downloads and shows album art asynchronously
-* 📊 Animated equalizer visualization
-* 🌗 Dark / light theme toggle
-* 🎨 Gradient background with custom font rendering
 * ⚡ Efficient update loop with configurable polling interval
-* 🔒 Thread-safe async album art loading
-
 ---
 
 ## Requirements
@@ -23,15 +18,9 @@
 * **Linux** (or UNIX system)
 * **gcc or clang** (to compile the code)
 * **make** (automate build and install process)
+* **Pulseaudio or Pipewire** (to get current playing songs)
 
 More information about dependencies can be found in the [Configuration](Configuration.md) section.
-
-Install `Tuner` with the AUR:
-
-```bash
-# Arch Linux:
-yay -S tuner
-```
 
 Install `Tuner` with the from source:
 
@@ -78,6 +67,7 @@ Tuner
 
 Planned or possible enhancements:
 
+* Fix Firefox issue with album art, disapearing after 50+ seconds
 * Text wrapping and scrolling titles
 * DPI-aware scaling
 * Tray mode / always-on-top
