@@ -3,7 +3,6 @@ CXXFLAGS := -std=c++17 -Wall -Wextra -O2
 
 # --- Branch Settings ---
 KAMAKAZI_BRANCH := Updates
-RAYLIB_BRANCH   := master
 
 # --- Paths ---
 VENDOR_DIR    := vendor
@@ -57,11 +56,11 @@ check-deps:
 $(RAYLIB_LIB):
 	@mkdir -p $(VENDOR_DIR)
 	@if [ ! -d "$(VENDOR_DIR)/raylib" ]; then \
-		echo "Cloning Raylib ($(RAYLIB_BRANCH))..."; \
-		git clone --depth 1 -b $(RAYLIB_BRANCH) https://github.com/raysan5/raylib.git $(VENDOR_DIR)/raylib; \
+		echo "Cloning Raylib..."; \
+		git clone --depth 1 https://github.com/raysan5/raylib.git $(VENDOR_DIR)/raylib
 	fi
 	@echo "Building Raylib..."
-	$(MAKE) -C $(RAYLIB_DIR) PLATFORM=PLATFORM_DESKTOP
+	$(MAKE) -C $(VENDOR_DIR)/raylib PLATFORM=PLATFORM_DESKTOP
 
 # 2. Fetch and build KamakaziLib
 $(KAMAKAZI_LIB):
