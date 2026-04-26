@@ -1,8 +1,6 @@
 # Tuner
 
-**Tuner** is a lightweight desktop widget built in **Rust** using **raylib** that displays the currently playing Spotify track on Linux. It shows album art, song title, artist, an animated equalizer, and supports dark/light themes.
-
-The application polls Spotify metadata via `playerctl` and renders a minimal, modern UI with smooth updates.
+**Tuner** is a lightweight desktop widget built in **C++** using **SDL** that displays the currently playing songs on Linux. It shows album art, song title, artist, an animated equalizer, and supports dark/light themes.
 
 ---
 
@@ -22,17 +20,28 @@ The application polls Spotify metadata via `playerctl` and renders a minimal, mo
 
 ### System
 
-* **Linux** (required for playerctl and raylib)
-* **Spotify desktop client**
-* **playerctl**
+* **Linux** (or UNIX system)
+* **gcc or clang** (to compile the code)
+* **make** (automate build and install process)
 
 More information about dependencies can be found in the [Configuration](Configuration.md) section.
 
-Install `playerctl`:
+Install `Tuner` with the AUR:
 
 ```bash
 # Arch Linux:
-sudo pacman -S playerctl
+yay -S tuner
+```
+
+Install `Tuner` with the from source:
+
+```bash
+# All distrobutions (only tested on artix currently)
+git clone https://github.com/Ametrine-cc/Tuner.git
+cd Tuner
+
+make
+sudo make install
 ```
 
 ---
@@ -43,58 +52,26 @@ Find more about configuration and dependencies in the [Configuration](Configurat
 
 ---
 
-## Installation
-
-### Building from source
-
-```bash
-git clone https://github.com/Ametrine-cc/Tuner.git
-cd tuner
-
-chmod +x install.sh
-./install.sh
-```
-
 ### Uninstallation
 
 ```bash
-tuner --uninstall
+Tuner --uninstall
 ```
 
 ### Running
 
 ```bash
-tuner
+Tuner
 ```
-
-or
-
-```bash
-./target/release/tuner
-```
-
-Make sure Spotify is running in the background or nothing will show on the window when it's opened.
-
----
-
-## Acknowledgements
-
-* [raylib](https://www.raylib.com/)
-* Spotify
-* playerctl developers
 
 ---
 
 ## Notes & Limitations
 
-* Linux-only (depends on `playerctl`)
-* Spotify desktop client required
+* Linux-only (no planned support for other OS's)
 * Album art is downloaded to a temporary file and cleaned up automatically
 * Text is truncated (UTF-8 safe) rather than wrapped
 * No tray icon or background mode (yet)
-* No support for non-Spotify players (yet)
-* No support for non-Linux platforms (yet)
-* The C# version works but is not actively maintained and not recommended for use.
 ---
 
 ## Future Improvements
@@ -104,12 +81,11 @@ Planned or possible enhancements:
 * Text wrapping and scrolling titles
 * DPI-aware scaling
 * Tray mode / always-on-top
-* Support for non-Spotify players
-* Windows/macOS support (alternative metadata backend)
+* MacOS support
 
 ---
 
 ## License
 
-MIT [License](LICENSE.md)
+GPL3 [License](LICENSE)
 ---
