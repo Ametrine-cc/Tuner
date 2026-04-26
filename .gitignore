@@ -2,3 +2,4 @@ build/
 vendor/kamakazi/
 tuner
 .old/target/
+Cargo.lock
