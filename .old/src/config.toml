@@ -1,0 +1,5 @@
+# Read configuration settings from a file or from the documentation
+dark_mode = true
+window_width = 600
+window_height = 200
+update_interval = 2.0
