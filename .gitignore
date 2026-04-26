@@ -3,3 +3,4 @@ tuner
 .old/target/
 Cargo.lock
 test.cc
+vendor/
