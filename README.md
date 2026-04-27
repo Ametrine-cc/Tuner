@@ -41,16 +41,16 @@ Find more about configuration and dependencies in the [Configuration](Configurat
 
 ---
 
-### Uninstallation
-
-```bash
-Tuner --uninstall
-```
-
 ### Running
 
 ```bash
-Tuner
+tuner
+```
+
+### Uninstallation
+
+```bash
+tuner --uninstall
 ```
 
 ---
@@ -61,13 +61,14 @@ Tuner
 * Album art is downloaded to a temporary file and cleaned up automatically
 * Text is truncated (UTF-8 safe) rather than wrapped
 * No tray icon or background mode (yet)
+* All old versions of `Tuner`, can be found in .old, this includes the C# and Rust versions at this current moment.
 ---
 
 ## Future Improvements
 
 Planned or possible enhancements:
 
-* Fix Firefox issue with album art, disapearing after 50+ seconds
+* Fix Firefox issues with album art
 * Text wrapping and scrolling titles
 * DPI-aware scaling
 * Tray mode / always-on-top
