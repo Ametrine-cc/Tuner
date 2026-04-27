@@ -1,15 +1,16 @@
 // Libraries
 #include <pulse/pulseaudio.h>
-#include <dbus/dbus.h>
+#include <dbus-1.0/dbus/dbus.h>
 #include <thread>
 #include <mutex>
 #include <atomic>
 #include <string>
 
+#include "include/tuner.hh"
 #include "raylib.h"
-#include "kamakazi"
 
 // Kamakazi settings
+
 bool Kamakazi_Utils::ignore_dangerLevel  = false;
 bool Kamakazi_Utils::show_dangerLevel    = true;
 bool Kamakazi_Utils::show_makeLogEntry   = false;
@@ -23,7 +24,7 @@ struct AudioInfo {
     std::string mediaTitle;
     std::string mediaArtist;
     std::string artUrl;
-    std::string playerBusName; // Added to target the correct player for Play/Next/Prev
+    std::string playerBusName;
     uint32_t    sampleRate = 0;
     int         volumePct  = 0;
     bool        ready      = false;
@@ -290,7 +291,12 @@ static std::string art_url_to_path(const std::string& url) {
 // Main
 
 int main() {
+    char buffer[MAX_BUFFER_SIZE];
     kazi_log(__FUNCTION__, "Starting Tuner");
+
+    if (checkConfig() != 0) {
+        kamakazi("Failed to load config", 2);
+    }
 
     std::thread bg(poll_thread);
 
@@ -299,7 +305,9 @@ int main() {
 
     // Fonts
 
-    Font font = LoadFontEx("/usr/share/Tuner/resources/Roboto-Black.ttf", 28, nullptr, 0);
+    snprintf(buffer, MAX_BUFFER_SIZE, "%s/resources/Roboto-Black.ttf", TUNER_DIR);
+
+    Font font = LoadFontEx(buffer, 28, nullptr, 0);
     if (font.texture.id == 0) {
         TraceLog(LOG_WARNING, "FONT: Failed to load Roboto-Black.ttf (28px) — falling back to default");
         font = GetFontDefault();
@@ -307,7 +315,9 @@ int main() {
         SetTextureFilter(font.texture, TEXTURE_FILTER_POINT);
     }
 
-    Font fontSmall = LoadFontEx("/usr/share/Tuner/resources/Roboto-Italic.ttf", 18, nullptr, 0);
+    snprintf(buffer, MAX_BUFFER_SIZE, "%s/resources/Roboto-Italic.ttf", TUNER_DIR);
+
+    Font fontSmall = LoadFontEx(buffer, 18, nullptr, 0);
     if (fontSmall.texture.id == 0) {
         TraceLog(LOG_WARNING, "FONT: Failed to load Roboto-Italic.ttf (18px) — falling back to default");
         fontSmall = GetFontDefault();

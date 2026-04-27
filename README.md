@@ -58,8 +58,6 @@ tuner --uninstall
 ## Notes & Limitations
 
 * Linux-only (no planned support for other OS's)
-* Album art is downloaded to a temporary file and cleaned up automatically
-* Text is truncated (UTF-8 safe) rather than wrapped
 * No tray icon or background mode (yet)
 * All old versions of `Tuner`, can be found in .old, this includes the C# and Rust versions at this current moment.
 ---
@@ -72,7 +70,7 @@ Planned or possible enhancements:
 * Text wrapping and scrolling titles
 * DPI-aware scaling
 * Tray mode / always-on-top
-* MacOS support
+* MacOS and UNIX/UNIX Like OS's support
 
 ---
 
