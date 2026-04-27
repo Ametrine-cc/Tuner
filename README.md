@@ -16,7 +16,7 @@
 ### System
 
 * **Linux** (or UNIX system)
-* **gcc or clang** (to compile the code)
+* **clang** (to compile the code)
 * **make** (automate build and install process)
 * **Pulseaudio or Pipewire** (to get current playing songs)
 
@@ -25,7 +25,7 @@ More information about dependencies can be found in the [Configuration](Configur
 Install `Tuner` with the from source:
 
 ```bash
-# All distrobutions (only tested on artix currently)
+# All distrobutions (only tested on Artix/Arch and Fedora currently)
 git clone https://github.com/Ametrine-cc/Tuner.git
 cd Tuner
 

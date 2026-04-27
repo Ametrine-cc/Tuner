@@ -12,6 +12,7 @@
 #define TUNER_DIR "/usr/share/Tuner"
 
 // FUNCTIONS
+void createConfig();
 int checkConfig();
 
 #endif // TUNER_HH
