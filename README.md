@@ -37,7 +37,7 @@ sudo make install
 
 ## Configuration
 
-Find more about configuration and dependencies in the [Configuration](Configuration.md) section.
+Find more about configuration and dependencies in the [Configuration](Configuration.adoc) section.
 
 ---
 

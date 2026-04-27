@@ -1,14 +1,12 @@
 = Configuration
 
-This is an interactive editor.
-Use it to try https://asciidoc.org[AsciiDoc].
 
-== Section Title
+== Configuration File Syntax
 
 * A list item
 * Another list item
 
-[,ruby]
+[,toml]
 ----
 puts 'Hello, World!'
 ----

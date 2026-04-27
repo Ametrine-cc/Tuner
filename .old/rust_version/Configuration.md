@@ -20,8 +20,6 @@ Key crates used:
 * `serde` + `toml` – configuration loading
 * `uuid` – temporary file naming
 
-
-
 The application loads an optional `config.toml` from the working directory.
 
 ### Example `config.toml`
