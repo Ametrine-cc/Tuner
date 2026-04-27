@@ -1,3 +1,19 @@
+// Tuner | The Media Player
+// Copyright (C) 2026  Ametrine Foundation
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 // Libraries
 #include <pulse/pulseaudio.h>
 #include <dbus-1.0/dbus/dbus.h>
@@ -8,6 +24,12 @@
 
 #include "include/tuner.hh"
 #include "raylib.h"
+
+// TunerConfig
+
+Color TunerConfig::backgroundColor = {30,  30,  35,  255};
+Color TunerConfig::titleTextColor = {240, 240, 245, 255};
+Color TunerConfig::subtitleTextColor = {160, 160, 170, 255};
 
 // Kamakazi settings
 
@@ -36,16 +58,7 @@ static std::atomic<bool> g_running { true };
 
 // Theme
 
-struct ThemeDark {
-    static Color background;
-    static Color titleText;
-    static Color subtitleText;
-};
-Color ThemeDark::background   = {30,  30,  35,  255};
-Color ThemeDark::titleText    = {240, 240, 245, 255};
-Color ThemeDark::subtitleText = {160, 160, 170, 255};
-
-struct Theme : ThemeDark {};
+struct Theme : TunerConfig{};
 
 static bool ButtonClicked(Rectangle rect) {
     return IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
@@ -55,13 +68,13 @@ static bool ButtonClicked(Rectangle rect) {
 static bool DrawButton(Font font, Rectangle rect, const char* label, int fontSize) {
     bool clicked = ButtonClicked(rect);
     bool hovered = CheckCollisionPointRec(GetMousePosition(), rect);
-    Color fill   = hovered ? Theme::subtitleText : (Color){60, 60, 68, 255};
+    Color fill   = hovered ? Theme::subtitleTextColor : (Color){60, 60, 68, 255};
     DrawRectangleRec(rect, fill);
 
     int textW = MeasureText(label, fontSize);
     int textX = (int)rect.x + ((int)rect.width  - textW) / 2;
     int textY = (int)rect.y + ((int)rect.height - fontSize) / 2;
-    DrawTextEx(font, label, {(float)textX, (float)textY}, (float)fontSize, 1, Theme::titleText);
+    DrawTextEx(font, label, {(float)textX, (float)textY}, (float)fontSize, 1, Theme::titleTextColor);
 
     return clicked;
 }
@@ -357,6 +370,7 @@ int main() {
     };
 
     while (!WindowShouldClose()) {
+        checkConfig();
         // Snapshot shared state
         AudioInfo audio;
         {
@@ -398,14 +412,14 @@ int main() {
         }
 
         BeginDrawing();
-        ClearBackground(Theme::background);
+        ClearBackground(Theme::backgroundColor);
 
         // Album art or placeholder
 
         if (artTex.id > 0) {
             DrawTexture(artTex, (int)artRect.x, (int)artRect.y, WHITE);
         } else {
-            DrawRectangleRec(artRect, Theme::subtitleText);
+            DrawRectangleRec(artRect, Theme::subtitleTextColor);
         }
 
         const char* title  = audio.ready && !audio.mediaTitle.empty()
@@ -413,8 +427,8 @@ int main() {
         const char* artist = audio.ready && !audio.mediaArtist.empty()
                              ? audio.mediaArtist.c_str() : "";
 
-        DrawTextEx(font,      title,  {210.0f, 50.0f}, 28, 1, Theme::titleText);
-        DrawTextEx(fontSmall, artist, {210.0f, 88.0f}, 18, 1, Theme::subtitleText);
+        DrawTextEx(font,      title,  {210.0f, 50.0f}, 28, 1, Theme::titleTextColor);
+        DrawTextEx(fontSmall, artist, {210.0f, 88.0f}, 18, 1, Theme::subtitleTextColor);
 
         DrawButton(font, backRect, "<<",  16);
         DrawButton(font, playRect, isPlaying ? "||" : ">", 22);
