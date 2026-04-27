@@ -3,10 +3,9 @@
 
 == Configuration File Syntax
 
-* A list item
-* Another list item
-
 [,toml]
 ----
-puts 'Hello, World!'
+background={30,  30,  35,  255}
+titleText={240, 240, 245, 255}
+subtitleText = {160, 160, 170, 255}
 ----
