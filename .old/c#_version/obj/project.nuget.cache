@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "gh9dsWTOpPk=",
+  "success": true,
+  "projectFilePath": "/home/noticxs/Projects/Tuner/.old/c#_version/tuner.csproj",
+  "expectedPackageFiles": [
+    "/home/noticxs/.nuget/packages/raylib-cs/7.0.2/raylib-cs.7.0.2.nupkg.sha512",
+    "/home/noticxs/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.4/microsoft.aspnetcore.app.ref.10.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

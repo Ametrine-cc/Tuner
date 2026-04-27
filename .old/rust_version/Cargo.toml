@@ -1,0 +1,12 @@
+[package]
+name = "tuner"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+raylib = "5.5.1"
+toml = "0.9.10"
+reqwest = { version = "0.11", features = ["default"] }
+tokio = { version = "1", features = ["full"] }
+uuid = { version = "1.0", features = ["v4"] }
+serde = { version = "1.0", features = ["derive"] }

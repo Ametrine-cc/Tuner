@@ -1,0 +1,14 @@
+/home/noticxs/Projects/Tuner/.old/rust_version/target/debug/deps/clang_sys-b91c7fcd5843cec8.d: /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/support.rs /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/macros.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/common.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/dynamic.rs
+
+/home/noticxs/Projects/Tuner/.old/rust_version/target/debug/deps/libclang_sys-b91c7fcd5843cec8.rlib: /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/support.rs /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/macros.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/common.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/dynamic.rs
+
+/home/noticxs/Projects/Tuner/.old/rust_version/target/debug/deps/libclang_sys-b91c7fcd5843cec8.rmeta: /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/support.rs /home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/macros.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/common.rs /home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/dynamic.rs
+
+/home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs:
+/home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/support.rs:
+/home/noticxs/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs:
+/home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/macros.rs:
+/home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/common.rs:
+/home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out/dynamic.rs:
+
+# env-dep:OUT_DIR=/home/noticxs/Projects/Tuner/.old/rust_version/target/debug/build/clang-sys-f76c4658e92c7f58/out
