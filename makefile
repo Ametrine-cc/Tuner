@@ -119,6 +119,5 @@ uninstall:
 	rmdir  $(DESTDIR)$(TUNERDIR) 2>/dev/null || true
 
 clean:
+	rm -rf $(VENDOR_DIR)
 	rm -f $(TARGET)
-	rm -rf $(KAMAKAZI_PATH)
-	@if [ -d "$(RAYLIB_DIR)" ]; then $(MAKE) -C $(RAYLIB_DIR) clean; fi
