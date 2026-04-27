@@ -4,5 +4,4 @@ tuner
 .old/c#_version/bin
 .old/c#_version/obj
 Cargo.lock
-test.cc
 vendor/
