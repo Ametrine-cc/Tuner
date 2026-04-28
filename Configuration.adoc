@@ -1,10 +1,13 @@
 = Configuration
 
+Using a TOML configuration file, you can customize the appearance and behavior of Tuner.
 
-== Configuration File Syntax
+
+== Config File Syntax
 
 [,toml]
 ----
+# ~/.tuner/config.toml
 background={30,  30,  35,  255}
 titleText={240, 240, 245, 255}
 subtitleText={160, 160, 170, 255}

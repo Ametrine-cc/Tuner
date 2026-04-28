@@ -22,7 +22,7 @@
 #include "raylib.h"
 
 // DEFINES
-#define DEFAULT_CONFIG_FILE_PATH ".tuner/config"
+#define DEFAULT_CONFIG_FILE_PATH ".tuner/config.toml"
 #define MAX_BUFFER_SIZE 1024
 
 #define HOME std::getenv("HOME")

@@ -31,13 +31,9 @@ cd Tuner
 
 make
 sudo make install
+
+# Installed run `tuner` or use the Tuner.desktop to launch `Tuner`
 ```
-
----
-
-## Configuration
-
-Find more about configuration and dependencies in the [Configuration](Configuration.adoc) section.
 
 ---
 
@@ -46,6 +42,10 @@ Find more about configuration and dependencies in the [Configuration](Configurat
 ```bash
 tuner
 ```
+
+## Configuration
+
+Find more about configuration and dependencies in the [Configuration](Configuration.adoc) section.
 
 ### Uninstallation
 
