@@ -25,10 +25,13 @@
 #include "include/tuner.hh"
 #include "raylib.h"
 
+static bool ButtonClicked(Rectangle rect);
+static bool DrawButton(Font font, Rectangle rect, const char* label, int fontSize);
+
 // TunerConfig
 
-Color TunerConfig::backgroundColor = {30,  30,  35,  255};
-Color TunerConfig::titleTextColor = {240, 240, 245, 255};
+Color TunerConfig::backgroundColor   = {30,  30,  35,  255};
+Color TunerConfig::titleTextColor    = {240, 240, 245, 255};
 Color TunerConfig::subtitleTextColor = {160, 160, 170, 255};
 
 // Kamakazi settings
@@ -55,29 +58,6 @@ struct AudioInfo {
 static AudioInfo         g_audio;
 static std::mutex        g_mutex;
 static std::atomic<bool> g_running { true };
-
-// Theme
-
-struct Theme : TunerConfig{};
-
-static bool ButtonClicked(Rectangle rect) {
-    return IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
-           CheckCollisionPointRec(GetMousePosition(), rect);
-}
-
-static bool DrawButton(Font font, Rectangle rect, const char* label, int fontSize) {
-    bool clicked = ButtonClicked(rect);
-    bool hovered = CheckCollisionPointRec(GetMousePosition(), rect);
-    Color fill   = hovered ? Theme::subtitleTextColor : (Color){60, 60, 68, 255};
-    DrawRectangleRec(rect, fill);
-
-    int textW = MeasureText(label, fontSize);
-    int textX = (int)rect.x + ((int)rect.width  - textW) / 2;
-    int textY = (int)rect.y + ((int)rect.height - fontSize) / 2;
-    DrawTextEx(font, label, {(float)textX, (float)textY}, (float)fontSize, 1, Theme::titleTextColor);
-
-    return clicked;
-}
 
 // MPRIS D-Bus bs
 
@@ -345,13 +325,6 @@ int main() {
     Texture2D artTex      = {0};
     std::string loadedUrl = "";
 
-    const float playW = 54, playH = 54;
-    const float sideW = 42, sideH = 42;
-    const float gap   = 16;
-
-    const int ctrlCentreX = (200 + 590) / 2;
-    const int ctrlCentreY = 155;
-
     Rectangle artRect  = {10, 10, 180, 180};
     Rectangle playRect = {
         (float)(ctrlCentreX - playW / 2),
@@ -366,6 +339,11 @@ int main() {
     Rectangle nextRect = {
         playRect.x + playW + gap,
         (float)(ctrlCentreY - sideH / 2),
+        sideW, sideH
+    };
+    Rectangle settingsRect = {
+        (float)(GetScreenWidth() - sideW - gap),
+        (float)(GetScreenHeight() - sideH - (gap + 8)),
         sideW, sideH
     };
 

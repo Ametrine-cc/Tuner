@@ -35,8 +35,40 @@ struct TunerConfig {
     static Color subtitleTextColor;
 };
 
+// THEME
+struct Theme : TunerConfig{};
+
+// BUTTONS
+
+static bool ButtonClicked(Rectangle rect) {
+    return IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
+           CheckCollisionPointRec(GetMousePosition(), rect);
+}
+
+static bool DrawButton(Font font, Rectangle rect, const char* label, int fontSize) {
+    bool clicked = ButtonClicked(rect);
+    bool hovered = CheckCollisionPointRec(GetMousePosition(), rect);
+    Color fill   = hovered ? Theme::subtitleTextColor : (Color){60, 60, 68, 255};
+    DrawRectangleRec(rect, fill);
+
+    int textW = MeasureText(label, fontSize);
+    int textX = (int)rect.x + ((int)rect.width  - textW) / 2;
+    int textY = (int)rect.y + ((int)rect.height - fontSize) / 2;
+    DrawTextEx(font, label, {(float)textX, (float)textY}, (float)fontSize, 1, Theme::titleTextColor);
+
+    return clicked;
+}
+
+const float playW = 54, playH = 54;
+const float sideW = 42, sideH = 42;
+const float gap   = 16;
+
+const int ctrlCentreX = (200 + 590) / 2;
+const int ctrlCentreY = 155;
+
 // FUNCTIONS
 void createConfig();
+int settings();
 int checkConfig();
 
 #endif // TUNER_HH
