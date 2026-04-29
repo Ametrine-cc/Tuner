@@ -20,7 +20,7 @@
 * **make** (automate build and install process)
 * **Pulseaudio or Pipewire** (to get current playing songs)
 
-More information about dependencies can be found in the [Configuration](Configuration.md) section.
+More information about dependencies can be found in the [Configuration](Configuration.adoc) section.
 
 Install `Tuner` with the from source:
 
