@@ -26,7 +26,7 @@ SYS_LIBS := -lGL -lm -lpthread -ldl -lrt -lX11
 
 # --- Source Layout ---
 APP_DIR := Tuner
-APP_SRC := $(APP_DIR)/main.cc $(APP_DIR)/manager.cc $(APP_DIR)/updater.cc
+APP_SRC := $(APP_DIR)/main.cc $(APP_DIR)/manager.cc
 TARGET  := tuner
 LICENSE := LICENSE
 DESKTOP := Tuner.desktop

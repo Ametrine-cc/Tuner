@@ -39,7 +39,7 @@ Color TunerConfig::subtitleTextColor = {160, 160, 170, 255};
 bool Kamakazi_Utils::ignore_dangerLevel  = false;
 bool Kamakazi_Utils::show_dangerLevel    = true;
 bool Kamakazi_Utils::show_makeLogEntry   = false;
-bool Kamakazi_Utils::should_log          = true;
+bool Kamakazi_Utils::should_log          = false;
 
 // Shared State
 

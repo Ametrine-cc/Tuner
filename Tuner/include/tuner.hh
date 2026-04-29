@@ -70,5 +70,6 @@ const int ctrlCentreY = 155;
 void createConfig();
 int settings();
 int checkConfig();
+void update();
 
 #endif // TUNER_HH
