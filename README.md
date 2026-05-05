@@ -47,12 +47,6 @@ tuner
 
 Find more about configuration and dependencies in the [Configuration](Configuration.adoc) section.
 
-### Uninstallation
-
-```bash
-tuner --uninstall
-```
-
 ---
 
 ## Notes & Limitations
