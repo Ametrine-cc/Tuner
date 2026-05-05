@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+TryExec=tuner
+Exec=tuner
+Icon=/usr/share/Tuner/icon.png
+Terminal=false
+Categories=Media;Audio;
+
+Name=Tuner
+GenericName=Media Player
+Comment=Tuner, see your currently playing songs and controls.
+StartupNotify=true
+StartupWMClass=Tuner
+Actions=New;
+X-Desktop-File-Install-Version=0.28

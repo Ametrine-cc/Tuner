@@ -1,0 +1,4 @@
+# Default Theme
+backgroundColor = [30,  30,  35,  255]
+titleTextColor = [240, 240, 245, 255]
+subtitleTextColor = [160, 160, 170, 255]

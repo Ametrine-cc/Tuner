@@ -1,65 +1,41 @@
 # Tuner
 
-**Tuner** is a lightweight desktop widget built in **Rust** using **raylib** that displays the currently playing Spotify track on Linux. It shows album art, song title, artist, an animated equalizer, and supports dark/light themes.
-
-The application polls Spotify metadata via `playerctl` and renders a minimal, modern UI with smooth updates.
+**Tuner** is a lightweight desktop widget built in **C++** using **Raylib** that displays the currently playing songs on Linux. It shows album art, song title, artist, an animated equalizer, and supports dark/light themes.
 
 ---
 
 ## Features
 
-* 🎵 Displays current Spotify song and artist
+* 🎵 Displays current song and artist
 * 🖼️ Downloads and shows album art asynchronously
-* 📊 Animated equalizer visualization
-* 🌗 Dark / light theme toggle
-* 🎨 Gradient background with custom font rendering
 * ⚡ Efficient update loop with configurable polling interval
-* 🔒 Thread-safe async album art loading
-
 ---
 
 ## Requirements
 
 ### System
 
-* **Linux** (required for playerctl and raylib)
-* **Spotify desktop client**
-* **playerctl**
+* **Linux** (or UNIX system)
+* **clang** (to compile the code)
+* **make** (automate build and install process)
+* **Pulseaudio or Pipewire** (to get current playing songs)
 
-More information about dependencies can be found in the [Configuration](Configuration.md) section.
+More information about dependencies can be found in the [Configuration](Configuration.adoc) section.
 
-Install `playerctl`:
-
-```bash
-# Arch Linux:
-sudo pacman -S playerctl
-```
-
----
-
-## Configuration
-
-Find more about configuration and dependencies in the [Configuration](Configuration.md) section.
-
----
-
-## Installation
-
-### Building from source
+Install `Tuner` with the from source:
 
 ```bash
+# All distrobutions (only tested on Artix/Arch and Fedora currently)
 git clone https://github.com/Ametrine-cc/Tuner.git
-cd tuner
+cd Tuner
 
-chmod +x install.sh
-./install.sh
+make
+sudo make install
+
+# Installed run `tuner` or use the Tuner.desktop to launch `Tuner`
 ```
 
-### Uninstallation
-
-```bash
-tuner --uninstall
-```
+---
 
 ### Running
 
@@ -67,49 +43,32 @@ tuner --uninstall
 tuner
 ```
 
-or
+## Configuration
 
-```bash
-./target/release/tuner
-```
-
-Make sure Spotify is running in the background or nothing will show on the window when it's opened.
-
----
-
-## Acknowledgements
-
-* [raylib](https://www.raylib.com/)
-* Spotify
-* playerctl developers
+Find more about configuration and dependencies in the [Configuration](Configuration.adoc) section.
 
 ---
 
 ## Notes & Limitations
 
-* Linux-only (depends on `playerctl`)
-* Spotify desktop client required
-* Album art is downloaded to a temporary file and cleaned up automatically
-* Text is truncated (UTF-8 safe) rather than wrapped
+* Linux-only (no planned support for other OS's)
 * No tray icon or background mode (yet)
-* No support for non-Spotify players (yet)
-* No support for non-Linux platforms (yet)
-* The C# version works but is not actively maintained and not recommended for use.
+* All old versions of `Tuner`, can be found in .old, this includes the C# and Rust versions at this current moment.
 ---
 
 ## Future Improvements
 
 Planned or possible enhancements:
 
+* Fix Firefox issues with album art
 * Text wrapping and scrolling titles
 * DPI-aware scaling
 * Tray mode / always-on-top
-* Support for non-Spotify players
-* Windows/macOS support (alternative metadata backend)
+* MacOS and UNIX/UNIX Like OS's support
 
 ---
 
 ## License
 
-MIT [License](LICENSE.md)
+GPL3 [License](LICENSE)
 ---
